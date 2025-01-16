@@ -9,13 +9,26 @@ async function main() {
   // -v --version
   program.option("-v, --version").action(() => console.log(`v1.0.0`));
 
-  // 定义一个新的命令 "create"，用于生成模板
+  // 定义一个新的命令 "create"，用于生成模板 create my-project
   program
     .command("create")
     .description("生成一个新的 Vue3 模板")
     .action(async () => {
+      console.log("欢迎使用 Vue3 模板生成工具");
       // 定义要询问用户的问题
       const questions = [
+        {
+          type: "input",
+          name: "projectName",
+          message: "请输入项目名称：",
+          default: "my-project",
+          validate: (value) => {
+            if (value.trim() === "") {
+              return "项目名称不能为空";
+            }
+            return true;
+          },
+        },
         {
           type: "list",
           name: "fileType",
@@ -31,8 +44,8 @@ async function main() {
         console.log("模板生成失败");
         return;
       }
-      const { fileType } = answers;
-      const all = [];
+      const { projectName, fileType } = answers;
+      const all = [fs.mkdir(projectName)];
       const common = fs.copy(
         path.join(
           dirname(fileURLToPath(import.meta.url)),
@@ -44,18 +57,20 @@ async function main() {
       if (fileType === "TypeScript") {
         const ts = fs.copy(
           path.join(dirname(fileURLToPath(import.meta.url)), "../templates/ts"),
-          "./"
+          projectName
         );
         all.push(ts);
       } else {
         const js = fs.copy(
           path.join(dirname(fileURLToPath(import.meta.url)), "../templates/js"),
-          "./"
+          projectName
         );
         all.push(js);
       }
+      console.log("生成模板中...");
       try {
         await Promise.all(all);
+        console.log("模板成功创建");
       } catch {
         console.log("模板生成失败");
       }
