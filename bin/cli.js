@@ -24,7 +24,13 @@ async function main() {
         },
       ];
       // 使用 inquirer 库向用户询问问题
-      const answers = await inquirer.prompt(questions);
+      let answers;
+      try {
+        answers = await inquirer.prompt(questions);
+      } catch {
+        console.log("模板生成失败");
+        return;
+      }
       const { fileType } = answers;
       const all = [];
       const common = fs.copy(
@@ -48,7 +54,11 @@ async function main() {
         );
         all.push(js);
       }
-      await Promise.all(all);
+      try {
+        await Promise.all(all);
+      } catch {
+        console.log("模板生成失败");
+      }
     });
   // 解析命令行参数并执行程序
   program.parse(process.argv);
