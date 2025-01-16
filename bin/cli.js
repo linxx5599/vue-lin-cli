@@ -45,13 +45,14 @@ async function main() {
         return;
       }
       const { projectName, fileType } = answers;
-      const all = [fs.mkdir(projectName)];
+      await fs.mkdir(projectName);
+      const all = [];
       const common = fs.copy(
         path.join(
           dirname(fileURLToPath(import.meta.url)),
           "../templates/common"
         ),
-        "./"
+        projectName
       );
       all.push(common);
       if (fileType === "TypeScript") {
