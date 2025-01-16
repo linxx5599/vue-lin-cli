@@ -3,7 +3,7 @@
 ### 安装
 
 ``` bash
-npm install @vue/lin-cli -g
+npm install vue-lin-cli -g
 ```
 
 ### 查看版本
