@@ -1,10 +1,10 @@
 {
-  "name": "lin-vue-cli",
+  "name": "@lin-vue/cli",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
   "bin": {
-    "lin-vue-cli": "bin/cli.js"
+    "@lin-vue-cli": "bin/cli.js"
   },
   "dependencies": {
     "commander": "^13.0.0",
