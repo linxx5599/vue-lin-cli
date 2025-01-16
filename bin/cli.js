@@ -5,9 +5,16 @@ import fs from "fs-extra";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
+let version;
 async function main() {
+  const _package = await fs.readFile(
+    path.join(dirname(fileURLToPath(import.meta.url)), "../package.json"),
+    "utf-8"
+  );
+  version = JSON.parse(_package).version;
+
   // -v --version
-  program.option("-v, --version").action(() => console.log(`v1.0.0`));
+  program.option("-v, --version").action(() => console.log(`v${version}`));
 
   // 定义一个新的命令 "create"，用于生成模板 create my-project
   program
