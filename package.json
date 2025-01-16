@@ -1,0 +1,20 @@
+{
+  "name": "lin-cli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "lin-cli": "bin/cli.js"
+  },
+  "dependencies": {
+    "commander": "^13.0.0",
+    "fs-extra": "^11.3.0",
+    "inquirer": "^12.3.2"
+  },
+  "keywords": [
+    "vue"
+  ],
+  "author": "linjy",
+  "license": "ISC",
+  "description": ""
+}
