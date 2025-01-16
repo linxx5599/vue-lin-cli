@@ -1,10 +1,13 @@
 {
-  "name": "@lin-vue/cli",
+  "name": "@vue/lin-cli",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
   "bin": {
-    "@lin-vue-cli": "bin/cli.js"
+    "@vue-lin-cli": "bin/cli.js"
+  },
+  "scripts": {
+    "start": "node bin/cli.js"
   },
   "dependencies": {
     "commander": "^13.0.0",
@@ -16,5 +19,5 @@
   ],
   "author": "linjy",
   "license": "ISC",
-  "description": ""
+  "description": "一个创建 vue3 模板的 cli"
 }
