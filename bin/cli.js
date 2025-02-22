@@ -80,6 +80,7 @@ async function main() {
         await Promise.all(all);
         console.log("模板成功创建");
       } catch {
+        await fs.remove(projectName);
         console.log("模板生成失败");
       }
     });
